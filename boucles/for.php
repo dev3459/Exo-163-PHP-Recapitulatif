@@ -118,17 +118,34 @@ echo '<br><br>';
 //Créer un tableau pour les mois de l'année et affiché tous les mois de Janvier à Décembre
 //modifier et/ou remplacer les éléments ci-dessous
 echo "8.Les mois depuis le debut de l'annee : <br>";
-$mois = [];
-for ($i = 0; $i < 0; $i) {
-    echo '';
+
+$mois = [  
+  "1" => "Janvier",
+  "2" => "Février",
+  "3" => "Mars",
+  "4" => "Avril",
+  "5" => "Mai",
+  "6" => "Juin",
+  "7" => "Juillet",
+  "8" => "Août",
+  "9" => "Septembre",
+  "10" => "Octobre",
+  "11" => "Novembre",
+  "12" => "Décembre"
+];
+
+ksort($mois);
+foreach ($mois as $number => $stringMonth) {
+  echo $stringMonth."<br>";
 }
 echo '<br><br>';
 
 //Afficher les mois de la fin de l'année jusqu'au début de l'année
 //modifier et/ou remplacer les éléments ci-dessous
 echo "9.Les mois depuis la fin de l'annee : <br>";
-for ($i = 0; $i < 0; $i) {
-    echo '';
+krsort($mois);
+foreach ($mois as $number => $stringMonth) {
+  echo $stringMonth."<br>";
 }
 echo '<br><br>';
 
@@ -158,6 +175,13 @@ $college = array(
 
 echo '10.Les eleves du college : <br>';
 //ajoutez votre code ici
+foreach ($college as $classe => $eleve) {
+  echo "<br> En ".$classe. " il se trouve les élèves suivant :";
+  echo "<br>";
+  foreach ($eleve as $nom => $lastAndFirstName) {
+      echo $nom." : ".$lastAndFirstName["Nom"]." ".$lastAndFirstName["Prenom"]."<br>";
+  }
+}
 echo '<br><br>';
 
 //----------------------------------------
@@ -165,6 +189,14 @@ echo '<br><br>';
 //reprenez le tableau ci-dessus, ajoutez des éléves pour la classe de troisième et réaffichez tout
 echo '11.Les eleves du college (avec les nouveaux arrivants): <br>';
 //ajoutez votre code ici
+$college["Troisieme"] = [
+    array('Nom' => 'GJ', 'Prenom' => 'Alicia'),
+    array('Nom' => 'GC', 'Prenom' => 'Coco'),
+    array('Nom' => 'Po', 'Prenom' => 'Théo')
+];
+foreach ($college['Troisieme'] as $classe) {
+    echo $classe['Nom']. " " .$classe['Prenom']."<br>";
+}
 echo '<br><br>';
 
 //----------------------------------------
@@ -206,6 +238,14 @@ $videotheque = array(
 
 echo '12.Mes films : <br>';
 //ajoutez votre code ici
+foreach($videotheque as $infos){
+  $acteurs = implode("<br>", $infos['acteurs']);
+
+  echo "<br><br>Nom du film: " . $infos["nom"] . "<br>
+  La date de sortie: " . $infos['date'] . "<br>
+  Le réalisateur est: " . $infos['realisateur'] . "<br>
+  Les acteurs sont: <br>" . $acteurs;
+}
 echo '<br><br>';
 
 //----------------------------------------
@@ -216,4 +256,53 @@ echo '<br><br>';
 
 echo '13.Mes films : <br>';
 //ajoutez votre code ici
+
+$videotheque[] = [
+  'nom' => 'Demolition Man', 
+  'date' => '1993', 
+  'realisateur' => 'Marco Brambilla',
+  'acteurs' => [
+      'Sylvester Stallone',
+      'Wesley Snipes',
+      'Benjamin Bratt',
+      'Sandra Bullock'
+  ]
+];
+
+$videotheque[] = [
+  'nom' => 'Fast and Furious', 
+  'date' => '2001', 
+  'realisateur' => 'Vin Diesel',
+  'acteurs' => [
+      "Vin Diesel", 
+      "Justin Lin", 
+      "Philip Atwell", 
+      "F. Gary Gray", 
+      "John Singleton", 
+      "David Leitch", 
+      "James Wan", 
+      "Rob Cohen"
+  ]
+];
+
+$videotheque[] = [
+  'nom' => 'Chappie', 
+  'date' => '2015', 
+  'realisateur' => 'Neill Blomkamp',
+  'acteurs' => [
+      "Hugh Jackman",
+      "Dev Patel",
+      "Yolandi Visser",
+      "Sharlto Copley"
+  ]
+];
+
+foreach($videotheque as $infos){
+  $acteurs = implode("<br>", $infos['acteurs']);
+
+  echo "<br><br>Nom du film: " . $infos["nom"] . "<br>
+  La date de sortie: " . $infos['date'] . "<br>
+  Le réalisateur est: " . $infos['realisateur'] . "<br>
+  Les acteurs sont: <br>" . $acteurs;
+}
 echo '<br><br>';
